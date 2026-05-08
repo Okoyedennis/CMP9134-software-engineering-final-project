@@ -6,11 +6,13 @@ import useAuthApi from "../hooks/useAuthApi";
 import { toast } from "react-toastify";
 import PageHelmet from "../components/PageHelmet";
 import Button from "../components/Button";
+import { Eye, EyeOff } from "lucide-react";
 
 const SignUp = () => {
   const [forename, setForename] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -79,10 +81,12 @@ const SignUp = () => {
 
           <TextInput
             label="Password"
-            type="password"
+            type={showPassword ? "type" : "password"}
             value={password}
             onChange={setPassword}
             placeholder="Enter your password"
+            onClick={() => setShowPassword(!showPassword)}
+            Icon={showPassword ? Eye : EyeOff}
           />
 
           <Button

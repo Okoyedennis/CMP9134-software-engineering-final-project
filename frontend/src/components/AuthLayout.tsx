@@ -17,7 +17,7 @@ const AuthLayout = ({ title, subtitle, children }: AuthLayoutProps) => {
               <Bot className="w-8 h-8 text-blue-500" />
             </div>
             <h1 className="text-2xl font-bold">{title}</h1>
-            <p className="text-gray-400 mt-2 text-sm">{subtitle}</p>
+            <p className="text-gray-400 mt-2 text-[15px]">{subtitle}</p>
           </div>
 
           {children}

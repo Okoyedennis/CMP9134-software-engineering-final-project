@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthLayout from "../components/AuthLayout";
-import AuthInput from "../common/TextInput";
+import TextInput from "../common/TextInput";
 import useAuthApi from "../hooks/useAuthApi";
 import { toast } from "react-toastify";
 import { useCookies } from "../hooks/useCookies";
 import PageHelmet from "../components/PageHelmet";
 import Button from "../components/Button";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const { signin, isLoading } = useAuthApi();
 
@@ -61,7 +63,7 @@ export default function SignIn() {
         title="Sign In"
         subtitle="Access your robot control dashboard">
         <form onSubmit={handleSubmit} className="space-y-5">
-          <AuthInput
+          <TextInput
             label="Email"
             type="email"
             value={email}
@@ -69,12 +71,14 @@ export default function SignIn() {
             placeholder="Enter your email"
           />
 
-          <AuthInput
+          <TextInput
             label="Password"
-            type="password"
+            type={showPassword ? "type" : "password"}
             value={password}
             onChange={setPassword}
             placeholder="Enter your password"
+            onClick={() => setShowPassword(!showPassword)}
+            Icon={showPassword ? Eye : EyeOff}
           />
 
           <Button

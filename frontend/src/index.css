@@ -5,7 +5,7 @@
 @layer base {
   /* Base styles */
   *:focus-visible {
-    @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+    @apply outline-none;
     ring-offset-color: #1a1a1a;
   }
 
