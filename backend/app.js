@@ -18,10 +18,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected successfully"))
-  .catch((error) => console.error("MongoDB connection error:", error.message));
+if (process.env.NODE_ENV !== "test") {
+  mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => console.log("MongoDB connected successfully"))
+    .catch((error) =>
+      console.error("MongoDB connection error:", error.message),
+    );
+} else {
+  console.log("Skipping MongoDB connection in test environment");
+}
 
 app.use("/auth", authRoutes);
 
@@ -210,6 +216,10 @@ app.get("/getUsers", verifyToken, async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+  });
+}
+
+export default app;
