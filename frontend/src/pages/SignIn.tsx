@@ -31,10 +31,6 @@ export default function SignIn() {
       toast.error("Password is required");
       return;
     }
-    if (password.length < 6) {
-      toast.error("Password must be at least 6 characters long");
-      return;
-    }
 
     const data = { email, password };
 
