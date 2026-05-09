@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      # MongoDB Service (You can replace with actual service if needed)
+      # MongoDB Service
       mongo:
         image: mongo:7
         ports:
@@ -59,7 +59,7 @@ jobs:
       # Push Docker images to Docker Hub
       - name: Push Docker Images
         run: |
-          docker build -t my-frontend-image ./frontend
-          docker push my-frontend-image
-          docker build -t my-backend-image ./backend
-          docker push my-backend-image
+          docker build -t dennis07okoye/my-frontend-image ./frontend
+          docker push dennis07okoye/my-frontend-image
+          docker build -t dennis07okoye/my-backend-image ./backend
+          docker push dennis07okoye/my-backend-image
