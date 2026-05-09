@@ -1,3 +1,4 @@
+version: "3"
 services:
   robot-api:
     image: ghcr.io/francescodelduchetto/cmp9134_2526_robotsim:latest
