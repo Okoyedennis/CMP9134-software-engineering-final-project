@@ -32,10 +32,14 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      removeCookie("gcs_token");
+    const path = window.location.pathname;
 
-      window.location.href = "/signin";
+    const authPages = ["/signin", "/signup"];
+
+    if (!authPages.includes(path)) {
+      if (error.response?.status === 401) {
+        removeCookie("gcs_token");
+      }
     }
 
     return Promise.reject(error);
